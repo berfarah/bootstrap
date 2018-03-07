@@ -25,13 +25,6 @@ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/
 echo "Installing homebrew dependencies"
 brew bundle
 
-echo "Is this a personal machine?"
-read -p "[y/n]" personal
-if [ "$personal" == "y" ]; then
-  echo "Installing additional applications"
-  brew bundle --file=Brewfile.personal
-fi
-
 echo "Installing FZF shell extensions"
 /usr/local/opt/fzf/install
 
