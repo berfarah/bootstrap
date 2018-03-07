@@ -1,7 +1,7 @@
 #!/bin/bash
 
-RUBY_VERSION="2.3.1"
-NODE_VERSION="6.10.0"
+RUBY_VERSION="2.5.0"
+NODE_VERSION="8.9.4"
 
 git_tar()
 {
@@ -28,9 +28,6 @@ brew bundle
 echo "Installing FZF shell extensions"
 /usr/local/opt/fzf/install
 
-echo "Setting up NPM"
-npm install -g eslint yarn
-
 echo "Setting up Ruby"
 eval "$(rbenv init -)" 2> /dev/null
 git clone git://github.com/tpope/rbenv-ctags.git ~/.rbenv/plugins/rbenv-ctags
@@ -42,11 +39,11 @@ echo "Setting up Node"
 eval "$(nodenv init -)" 2> /dev/null
 nodenv install $NODE_VERSION
 nodenv global $NODE_VERSION
-yarn install -g eslint
+yarn global add eslint
 
 echo "Installing dotfiles"
 mkdir -p $HOME/Code
-git clone git@github.com:berfarah/dotfiles $HOME/Code/dotfiles && \
+git clone https://github.com/berfarah/dotfiles.git $HOME/Code/dotfiles && \
   $HOME/Code/dotfiles/link.sh
 
 # =======================================
@@ -55,20 +52,6 @@ git clone git@github.com:berfarah/dotfiles $HOME/Code/dotfiles && \
 echo "Moving over old preferences"
 chmod 0600 ./Library/Preferences/*
 cp -R ./Library/ ~/Library/
-
-# Mac app store
-
-# Check for software updates daily instead of weekly
-defaults write com.apple.SoftwareUpdate ScheduleFrequency -int 1
-
-# Download newly available updates in background
-defaults write com.apple.SoftwareUpdate AutomaticDownload -int 1
-
-# Install System data files & security updates
-defaults write com.apple.SoftwareUpdate CriticalUpdateInstall -int 1
-
-# Turn on app auto-update
-defaults write com.apple.commerce AutoUpdate -bool true
 
 # Alfred (enable sync)
 killall Alfred &> /dev/null
