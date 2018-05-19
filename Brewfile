@@ -28,10 +28,9 @@ brew 'xz'
 
 # Deployment tools
 cask 'aws-vault'
+cask 'docker-toolbox'
 brew 'bcrypt'
 brew 'chamber'
-brew 'docker'
-brew 'docker-machine'
 brew 'fzf'
 brew 'git'
 brew 'git-crypt'
@@ -54,14 +53,11 @@ brew 'watchman'
 brew 'imagemagick', args: ['with-libtiff', 'with-little-cms', 'with-ghostscript']
 
 # Languages
-brew 'crystal-lang'
-brew 'elixir'
 brew 'go'
 brew 'dep'
 brew 'nodenv'
 brew 'python'
 brew 'rbenv'
-brew 'rust'
 brew 'yarn', args: ['without-node']
 
 # Databases
